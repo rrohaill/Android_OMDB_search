@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_large">32dp</dimen>
+    <dimen name="margin_medium">24dp</dimen>
+    <dimen name="margin_standard">20dp</dimen>
+    <dimen name="margin_short">8dp</dimen>
+    <dimen name="margin_extra_short">4dp</dimen>
+
+    <dimen name="cardCornerRadius">12dp</dimen>
+    <dimen name="cardElevation">8dp</dimen>
+
+    <dimen name="tvRegularSize">17sp</dimen>
+    <dimen name="tvLargeSize">21sp</dimen>
+
+    <dimen name="icon_max_width">74dp</dimen>
+    <dimen name="icon_max_height">90dp</dimen>
+</resources>
