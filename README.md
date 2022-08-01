@@ -6,6 +6,7 @@ and provides simple API.
 - Search
 - Detail
 - Favourite
+- Remove movie/show from search result
 
 #Following is a list of what libraries I have used to make this app:
 - Uses MVVM + clean architecture

@@ -15,10 +15,16 @@ interface FavouriteDao {
     fun insertFavourite(favourite: DetailResponse)
 
     @Query("SELECT * FROM DetailResponse")
-    fun getAllFavourites(): Flow<List<DetailResponse>>
+    fun getAllFavourites(): List<DetailResponse>
+
+    @Query("SELECT * FROM DetailResponse")
+    fun getAllFavouritesFlow(): Flow<List<DetailResponse>>
 
     fun getAllFavouritesDistinct(): Flow<List<DetailResponse>> =
-        getAllFavourites().distinctUntilChanged()
+        getAllFavouritesFlow().distinctUntilChanged()
+
+    fun containsFavourite(id: String): Boolean =
+        getAllFavourites().map { it.imdbID == id }.isNotEmpty()
 
     @Query("DELETE FROM DetailResponse WHERE imdbID = :id")
     fun deleteFavourite(id: String)

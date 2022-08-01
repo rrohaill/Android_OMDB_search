@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import dagger.hilt.android.AndroidEntryPoint
 import io.rohail.androidomdbsearch.databinding.ActivitySearchBinding
-import io.rohail.androidomdbsearch.ui.detail.DetailActivity.Companion.newInstance
-import io.rohail.androidomdbsearch.ui.favourite.FavouriteActivity
+import io.rohail.androidomdbsearch.ui.detail.view.DetailActivity.Companion.newInstance
+import io.rohail.androidomdbsearch.ui.favourite.view.FavouriteActivity
 import io.rohail.androidomdbsearch.ui.search.data.model.Search
 import io.rohail.androidomdbsearch.ui.search.model.DetailResult
 import io.rohail.androidomdbsearch.ui.search.model.SearchResult
@@ -44,6 +44,7 @@ class SearchActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener
             swipeRefresh.setOnRefreshListener(this@SearchActivity)
             searchButton.setOnClickListener {
                 hideKeyboard()
+                clearMovieList()
                 makeOMDBCall()
             }
             searchInput.setOnEditorActionListener(this@SearchActivity)
@@ -88,8 +89,10 @@ class SearchActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener
     }
 
     private fun showData(data: List<Search>) {
+        adapter.clear()
+        val filteredResult = viewModel.getFilteredData(data)
         binding.noResultMessage.visibility = View.GONE
-        adapter.addItems(data)
+        adapter.addItems(filteredResult)
     }
 
     private fun showError(message: String) {

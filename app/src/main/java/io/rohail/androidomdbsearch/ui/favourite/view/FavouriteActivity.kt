@@ -1,4 +1,4 @@
-package io.rohail.androidomdbsearch.ui.favourite
+package io.rohail.androidomdbsearch.ui.favourite.view
 
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -7,8 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import io.rohail.androidomdbsearch.databinding.ActivityFavouriteBinding
-import io.rohail.androidomdbsearch.ui.detail.DetailActivity
-import io.rohail.androidomdbsearch.ui.DaoViewModel
+import io.rohail.androidomdbsearch.ui.detail.view.DetailActivity
 import io.rohail.androidomdbsearch.ui.search.data.model.DetailResponse
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -17,7 +16,7 @@ import kotlinx.coroutines.launch
 class FavouriteActivity : AppCompatActivity(), FavouriteItemClickListener {
 
     private lateinit var binding: ActivityFavouriteBinding
-    private val viewModel: DaoViewModel by viewModels()
+    private val viewModel: FavouriteViewModel by viewModels()
     private lateinit var favouriteAdapter: FavouriteAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {

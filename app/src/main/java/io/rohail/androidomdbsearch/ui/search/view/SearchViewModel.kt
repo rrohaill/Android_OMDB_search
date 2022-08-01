@@ -3,6 +3,8 @@ package io.rohail.androidomdbsearch.ui.search.view
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.rohail.androidomdbsearch.ui.detail.usecase.SearchFilterUseCase
+import io.rohail.androidomdbsearch.ui.search.data.model.Search
 import io.rohail.androidomdbsearch.ui.search.model.DetailResult
 import io.rohail.androidomdbsearch.ui.search.model.SearchResult
 import io.rohail.androidomdbsearch.ui.search.usecase.FetchDetailUseCase
@@ -18,7 +20,8 @@ class SearchViewModel @Inject constructor(
     private val searchDatabaseUseCase: SearchDatabaseUseCase,
     private val getSearchResultUseCase: GetSearchResultUseCase,
     private val fetchDetailUseCase: FetchDetailUseCase,
-    private val getDetailResultUseCase: GetDetailResultUseCase
+    private val getDetailResultUseCase: GetDetailResultUseCase,
+    private val searchFilterUseCase: SearchFilterUseCase
 ) :
     ViewModel() {
 
@@ -37,4 +40,8 @@ class SearchViewModel @Inject constructor(
     }
 
     fun getDetailResult(): Flow<DetailResult> = getDetailResultUseCase()
+    fun getFilteredData(data: List<Search>): List<Search> {
+        val filters = searchFilterUseCase.getAllFilters()
+        return data.filter { !filters.contains(it.imdbID) }
+    }
 }

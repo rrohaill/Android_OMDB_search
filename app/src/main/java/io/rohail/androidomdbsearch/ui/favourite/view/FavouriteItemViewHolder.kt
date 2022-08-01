@@ -1,4 +1,4 @@
-package io.rohail.androidomdbsearch.ui.favourite
+package io.rohail.androidomdbsearch.ui.favourite.view
 
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide

@@ -9,8 +9,13 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import io.rohail.androidomdbsearch.base.api.OmdbApi
 import io.rohail.androidomdbsearch.base.database.FavouriteDao
+import io.rohail.androidomdbsearch.base.database.FilterDao
 import io.rohail.androidomdbsearch.base.database.MyDB
 import io.rohail.androidomdbsearch.base.database.MyDatabase
+import io.rohail.androidomdbsearch.ui.detail.usecase.SearchFilterUseCase
+import io.rohail.androidomdbsearch.ui.detail.usecase.SearchFilterUseCaseImpl
+import io.rohail.androidomdbsearch.ui.favourite.usecase.FavouriteUseCase
+import io.rohail.androidomdbsearch.ui.favourite.usecase.FavouriteUseCaseImpl
 import io.rohail.androidomdbsearch.ui.search.data.OMDBDataSource
 import io.rohail.androidomdbsearch.ui.search.data.OMDBDataSourceImpl
 import io.rohail.androidomdbsearch.ui.search.data.OMDBRepository
@@ -53,6 +58,11 @@ class ApplicationModule {
     fun provideFavouriteDao(@ApplicationContext appContext: Context): FavouriteDao =
         provideDB(appContext = appContext).favouriteDao()
 
+    @Provides
+    @Singleton
+    fun provideFilterDao(@ApplicationContext appContext: Context): FilterDao =
+        provideDB(appContext = appContext).searchFilterDao()
+
 }
 
 //Usecases
@@ -75,5 +85,13 @@ abstract class UseCaseModule {
     @Binds
     @Singleton
     abstract fun bindGetDetailResultUseCase(impl: GetDetailResultUseCaseImpl): GetDetailResultUseCase
+
+    @Binds
+    @Singleton
+    abstract fun bindFavouriteUseCase(impl: FavouriteUseCaseImpl): FavouriteUseCase
+
+    @Binds
+    @Singleton
+    abstract fun bindSearchFilterUseCase(impl: SearchFilterUseCaseImpl): SearchFilterUseCase
 
 }

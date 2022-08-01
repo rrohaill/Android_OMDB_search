@@ -16,7 +16,7 @@ import androidx.test.filters.LargeTest
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.rule.ActivityTestRule
 import io.rohail.androidomdbsearch.R
-import io.rohail.androidomdbsearch.ui.detail.DetailActivity
+import io.rohail.androidomdbsearch.ui.detail.view.DetailActivity
 import io.rohail.androidomdbsearch.ui.search.view.SearchActivity
 import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.Matchers
@@ -39,7 +39,7 @@ class SearchActivityTest {
     fun searchBarTest() {
         val searchB = onView(withId(R.id.searchButton))
         val searchET =
-            onView(Matchers.allOf(withId(R.id.searchInput), ViewMatchers.withText("")))
+            onView(Matchers.allOf(withId(R.id.searchInput), withText("")))
 
         try {
             searchET.check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
